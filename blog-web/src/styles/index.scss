@@ -1,0 +1,60 @@
+@import './reset.scss';
+
+html,
+body,
+#app {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+/*定义滚动条高宽 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+
+::-webkit-scrollbar-track-piece {
+  background: 0 0;
+}
+
+/*定义滑块 背景颜色+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  background-color: #b4c7d0;
+}
+
+.ant-comment-inner {
+  padding-bottom: 0 !important;
+}
+
+// 没有数据 显示
+.data-kong {
+  display: table;
+  height: 120px;
+  margin: 60px auto 40px;
+  padding: 35px 0 0 115px;
+  background: url('../assets/null.png') no-repeat 0 0;
+  background-size: 100px;
+
+  h5 {
+    font-size: 20px;
+    color: #8fafc6;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 14px;
+    color: #bdc3c7;
+    font-weight: bold;
+  }
+}
