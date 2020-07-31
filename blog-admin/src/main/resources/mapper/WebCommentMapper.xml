@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.WebCommentDao">
+    <resultMap id="commentArticleReply" type="com.zoe.blog.model.Comment">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="enabled" property="enabled"/>
+        <result column="visitor_nickname" property="visitorNickname"/>
+        <result column="visitor_email" property="visitorEmail"/>
+        <association property="reply">
+            <id column="rid" property="id"/>
+            <result column="rcontent" property="content"/>
+            <result column="renabled" property="enabled"/>
+            <result column="rcreate_time" property="createTime"/>
+        </association>
+    </resultMap>
+
+    <select id="getCommentsByArticleId" resultMap="commentArticleReply">
+        	SELECT c.*, r.id AS rid, r.content AS rcontent, r.create_time AS rcreate_time,r.enabled AS renabled
+            FROM b_comment AS c LEFT JOIN b_reply AS r ON c.id=r.comment_id
+            WHERE c.enabled=1 AND article_id=#{articleId}
+            order by c.create_time desc
+    </select>
+
+    <select id="getCommentsLimitEight" resultType="com.zoe.blog.model.Comment">
+        SELECT * from b_comment ORDER BY create_time DESC LIMIT 10
+    </select>
+
+    <insert id="insert" parameterType="com.zoe.blog.model.Comment" useGeneratedKeys="true" keyProperty="id">
+        insert into b_comment (content, create_time, enabled, article_id, visitor_nickname, visitor_email)
+        values
+        (#{content}, #{createTime}, #{enabled}, #{articleId}, #{visitorNickname}, #{visitorEmail})
+    </insert>
+
+</mapper>

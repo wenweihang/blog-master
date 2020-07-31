@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.CommentDao">
+    <resultMap id="commentArticleReply" type="com.zoe.blog.model.Comment">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+        <result column="enabled" property="enabled"/>
+        <result column="visitor_nickname" property="visitorNickname"/>
+        <result column="visitor_email" property="visitorEmail"/>
+        <association property="article">
+            <id column="aid" property="id"/>
+            <result column="title" property="title"/>
+        </association>
+        <association property="reply">
+            <id column="rid" property="id"/>
+            <result column="rcontent" property="content"/>
+            <result column="renabled" property="enabled"/>
+            <result column="rcreate_time" property="createTime"/>
+            <result column="comment_id" property="commentId"/>
+        </association>
+    </resultMap>
+
+    <select id="getList" resultMap="commentArticleReply">
+        SELECT c.*,a.id AS aid,a.title,r.id AS rid, r.content AS rcontent, r.enabled AS renabled,comment_id,
+        r.create_time AS rcreate_time FROM b_comment AS c LEFT JOIN b_article AS a ON c.article_id=a.id
+        LEFT JOIN b_reply AS r ON c.id=r.comment_id
+
+        order by c.create_time desc
+    </select>
+
+    <select id="findCommentByArticleId" resultType="com.zoe.blog.model.Comment">
+        select * from b_comment where article_id=#{articleId}
+    </select>
+
+    <update id="updateEnabled">
+        update b_comment set enabled=#{enabled} where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from b_comment where id=#{id}
+    </delete>
+
+</mapper>

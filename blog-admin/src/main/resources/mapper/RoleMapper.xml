@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.RoleDao">
+    <select id="getList" resultType="com.zoe.blog.model.Role">
+      select * from b_role
+      <where>
+          <if test="roleName != null and roleName != ''">
+              name=#{roleName}
+          </if>
+      </where>
+    </select>
+    <select id="search" resultType="com.zoe.blog.model.Role">
+        select * from b_role
+        <where>
+            <if test="roleName != null and roleName != ''">
+                name like concat(#{roleName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findByRoleId" resultType="com.zoe.blog.model.Role">
+        select * from b_role where id=#{id}
+    </select>
+
+    <select id="findByRoleName" resultType="com.zoe.blog.model.Role">
+        select * from b_role where name=#{roleName}
+    </select>
+
+    <insert id="insert">
+        insert into b_role (name, description, create_time)
+        values (#{name}, #{description}, #{createTime})
+    </insert>
+
+    <update id="update">
+        update b_role
+        <set>
+            <if test="name != null and name != ''">
+               name=#{name}
+            </if>
+            <if test="description != null">
+                ,description=#{description}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from b_role where id=#{id}
+    </delete>
+
+</mapper>

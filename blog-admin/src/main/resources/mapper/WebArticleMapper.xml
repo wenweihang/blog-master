@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.WebArticleDao">
+
+
+    <select id="getArchive" resultType="com.zoe.blog.dto.WebArchiveDto">
+        SELECT count(*) AS count,
+        DATE_FORMAT(FROM_UNIXTIME(create_time/1000, '%Y-%m-%d %H:%i:%S'), '%Y-%m') AS archive_time FROM b_article
+        where status=1
+        GROUP BY DATE_FORMAT(FROM_UNIXTIME(create_time/1000, '%Y-%m-%d %H:%i:%S'), '%Y-%m')
+        order by DATE_FORMAT(FROM_UNIXTIME(create_time/1000, '%Y-%m-%d %H:%i:%S'), '%Y-%m') desc
+    </select>
+
+    <select id="findArticleCountByArchive" resultType="com.zoe.blog.model.Article">
+        SELECT a.*,name
+        FROM b_article_category AS ac LEFT JOIN b_article AS a ON ac.article_id=a.id
+        LEFT JOIN b_category AS c ON ac.category_id=c.id
+        <where>
+            <if test="date != null">
+                DATE_FORMAT(FROM_UNIXTIME(a.create_time/1000, '%Y-%m-%d %H:%i:%S'), '%Y-%m')=#{date}
+            </if>
+            and status=1
+        </where>
+        ORDER BY sort DESC, a.create_time DESC
+    </select>
+
+    <select id="findArticleCountByCategory" resultType="com.zoe.blog.dto.WebCategoryDto">
+        SELECT c.id,c.name, COUNT(*) AS count
+        FROM  b_article AS a left JOIN b_article_category AS ac ON a.id=ac.article_id
+        left JOIN b_category AS c  ON c.id=ac.category_id
+        WHERE enabled=1 and a.status=1
+        GROUP BY c.id ORDER BY c.sort DESC
+    </select>
+
+    <select id="findArticleByCategoryId" resultType="com.zoe.blog.model.Article">
+        SELECT a.*,name
+        FROM b_article_category AS ac LEFT JOIN b_article AS a ON ac.article_id=a.id
+        LEFT JOIN b_category AS c ON ac.category_id=c.id
+        WHERE ac.category_id=#{categoryId} AND a.status=1
+        ORDER BY sort DESC,create_time desc
+    </select>
+
+    <select id="findArticlesByTitle" resultType="com.zoe.blog.model.Article">
+        select a.*,c.name from b_article AS a LEFT JOIN b_article_category AS ac ON a.id=ac.article_id
+        LEFT JOIN b_category AS c ON ac.category_id=c.id
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%', #{title}, '%')
+            </if>
+            and status=1 and c.enabled=1
+        </where>
+        ORDER BY sort DESC,a.create_time DESC
+    </select>
+
+    <select id="getArticleCount" resultType="int">
+        SELECT COUNT(*) FROM b_article where status=1
+    </select>
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.CategoryDao">
+    <select id="getList" resultType="com.zoe.blog.model.Category">
+        select * from b_category
+        <where>
+            <if test="name != null and name != ''">
+                name=#{title}
+            </if>
+        </where>
+    </select>
+
+    <select id="search" resultType="com.zoe.blog.model.Category">
+        select * from b_category
+        <where>
+            <if test="name != null and name != ''">
+                name like concat(#{name}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findById" resultType="com.zoe.blog.model.Category">
+        select * from b_category where id=#{id}
+    </select>
+
+    <select id="findByCategoryName" resultType="com.zoe.blog.model.Category">
+        select * from b_category where name=#{categoryName}
+    </select>
+
+    <insert id="insert" parameterType="com.zoe.blog.model.Category">
+        insert into b_category (name,sort,create_time,enabled)
+        values
+        (#{name},#{sort},#{createTime},#{enabled})
+    </insert>
+
+    <update id="update" parameterType="com.zoe.blog.model.Article">
+      update b_category set name=#{name},sort=#{sort},enabled=#{enabled} where id=#{id}
+    </update>
+
+
+    <delete id="delete" parameterType="int">
+        delete from b_category where id=#{id}
+    </delete>
+</mapper>

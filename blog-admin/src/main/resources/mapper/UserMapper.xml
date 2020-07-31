@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.UserDao">
+
+    <select id="getList" resultType="com.zoe.blog.model.User">
+        select * from b_user
+        <where>
+            <if test="username != null and username != ''">
+                username=#{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="search" resultType="com.zoe.blog.model.User">
+        select * from b_user
+        <where>
+            <if test="username != null and username != ''">
+                username like concat(#{username}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findByUserId" parameterType="int" resultType="com.zoe.blog.model.User">
+        select * from b_user where id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.zoe.blog.model.User">
+        insert into b_user (username, password, nickname, email, intro, avatar, enabled, last_login_time, create_time)
+        values
+        (#{username}, #{password}, #{nickname}, #{email}, #{intro}, #{avatar},
+        #{enabled}, #{lastLoginTime}, #{createTime})
+    </insert>
+
+    <update id="update" parameterType="com.zoe.blog.model.User">
+        update b_user
+        <set>
+            <if test="username != null and username != ''">
+                username=#{username},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname=#{nickname},
+            </if>
+            <if test="email != null and email != ''">
+                email=#{email},
+            </if>
+            <if test="intro != null and intro != ''">
+                intro=#{intro},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                avatar=#{avatar},
+            </if>
+            <if test="enabled != null">
+                enabled=#{enabled},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time=#{lastLoginTime}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <update id="modifyPassword">
+        update b_user
+        <set>
+            <if test="newPassword != null and newPassword != ''">
+                password=#{newPassword}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from b_user where id=#{id}
+    </delete>
+</mapper>

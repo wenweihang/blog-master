@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.ReplyDao">
+
+    <insert id="insert" parameterType="com.zoe.blog.model.Reply">
+        insert into b_reply (content, enabled, comment_id, create_time) values
+        (#{content}, #{enabled}, #{commentId}, #{createTime})
+    </insert>
+
+    <update id="update" parameterType="com.zoe.blog.model.Reply">
+        update b_reply
+        <set>
+            <if test="content != null and content != ''">
+                content=#{content},
+            </if>
+            <if test="enabled != null">
+                enabled=#{enabled}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from b_reply where id=#{id}
+    </delete>
+
+
+    <delete id="deleteByCommentId" parameterType="int">
+        delete from b_reply where comment_id=#{commentId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.ArticleCategoryRefDao">
+
+    <select id="findCategoryByArticleId" resultType="com.zoe.blog.model.Category">
+        SELECT c.* FROM b_article_category AS ac, b_category as c
+        WHERE ac.category_id=c.id AND ac.article_id=#{articleId}
+    </select>
+
+    <insert id="insert">
+        insert into b_article_category (article_id, category_id) values (#{articleId}, #{categoryId})
+    </insert>
+
+    <delete id="deleteByArticleId" parameterType="int">
+        delete from b_article_category where article_id=#{articleId}
+    </delete>
+
+    <delete id="deleteByCategoryId" parameterType="int">
+        delete from b_article_category where category_id=#{categoryId}
+    </delete>
+
+</mapper>

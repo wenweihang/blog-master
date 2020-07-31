@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.WebCategoryDao">
+    <select id="getCategoryCount" resultType="com.zoe.blog.dto.WebCategoryDto">
+        SELECT c.id,c.name, COUNT(*) AS count
+        FROM  b_article AS a left JOIN b_article_category AS ac ON a.id=ac.article_id
+        left JOIN b_category AS c  ON c.id=ac.category_id
+        GROUP BY c.id
+    </select>
+
+</mapper>

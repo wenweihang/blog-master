@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.ArticleDao">
+    <select id="getList" resultType="com.zoe.blog.model.Article">
+        SELECT a.*, name
+        FROM b_article AS a LEFT JOIN b_article_category AS ac ON a.id=ac.article_id
+        LEFT JOIN b_category AS c ON ac.category_id=c.id
+        <where>
+            <if test="title != null and title != ''">
+                title like concat('%', #{title}, '%')
+            </if>
+        </where>
+        <choose>
+            <when test="viewsOrder != null and viewsOrder != ''">
+                ORDER BY views ${viewsOrder}
+            </when>
+            <otherwise>
+                ORDER BY a.create_time DESC
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <select id="findByArticleId" resultType="com.zoe.blog.model.Article">
+        SELECT a.*, name
+        FROM b_article AS a LEFT JOIN b_article_category AS ac ON a.id=ac.article_id
+        LEFT JOIN b_category AS c ON ac.category_id=c.id where a.id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.zoe.blog.model.Article" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into b_article (title,content,status,allow_comment,create_time,last_update_time,sort)
+        values
+        (#{title},#{content},#{status},#{allowComment},#{createTime},#{lastUpdateTime},#{sort})
+    </insert>
+
+    <update id="update" parameterType="com.zoe.blog.model.Article">
+      update b_article set title=#{title},content=#{content},status=#{status},allow_comment=#{allowComment},
+      last_update_time=#{lastUpdateTime},sort=#{sort} where id=#{id}
+    </update>
+
+    <update id="addOneViews">
+      update b_article set views=views+1 where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from b_article where id=#{id}
+    </delete>
+</mapper>

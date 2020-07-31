@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.LoginUserDao">
+    <resultMap id="userRoles" type="com.zoe.blog.model.LoginUser">
+        <id column="user_id" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+        <result column="avatar" property="avatar"/>
+        <result column="intro" property="intro"/>
+        <result column="enabled" property="enabled"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="create_time" property="createTime"/>
+        <collection property="roles" ofType="com.zoe.blog.model.Role">
+            <id column="rid" property="id"/>
+            <result column="name" property="name"/>
+            <result column="description" property="description"/>
+            <result column="r_create_time" property="createTime"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByUsername" resultMap="userRoles">
+      SELECT u.*,r.id AS rid, name, description,r.create_time AS r_create_time
+        FROM b_user AS u LEFT JOIN b_user_role AS ur ON u.id=ur.user_id
+        LEFT JOIN b_role AS r on r.id=ur.role_id
+        WHERE  username=#{username}
+
+    </select>
+
+    <update id="updateLastLoginTime">
+        update b_user set last_login_time=#{lastLoginTime} where id=#{id}
+    </update>
+
+</mapper>

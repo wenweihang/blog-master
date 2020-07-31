@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.UserRoleRefDao">
+
+    <select id="getRoleByUserId" resultType="com.zoe.blog.model.Role">
+        SELECT r.* FROM b_user_role AS ur, b_role as r
+        WHERE ur.role_id=r.id AND ur.user_id=#{userId}
+    </select>
+
+    <insert id="insert">
+        insert into b_user_role (user_id, role_id) values (#{userId}, #{roleId})
+    </insert>
+
+    <delete id="deleteByUserId" parameterType="int">
+        delete from b_user_role where user_id=#{userId}
+    </delete>
+
+    <delete id="deleteByRoleId" parameterType="int">
+        delete from b_user_role where role_id=#{roleId}
+    </delete>
+
+</mapper>
