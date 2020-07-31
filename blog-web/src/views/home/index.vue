@@ -29,7 +29,7 @@ export default {
   min-height: 90vh;
 }
 .ant-layout-has-sider {
-  width: 1116px;
+  width: 86%;
   margin: 0 auto;
   padding-bottom: 42px;;
 }
