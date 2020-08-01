@@ -45,6 +45,10 @@ const routes = [{
     name: 'Setting',
     component: () => import('@/views/setting/index')
   }, {
+    path: 'log',
+    name: 'Log',
+    component: () => import('@/views/log/index')
+  }, {
     path: '404',
     name: '404',
     component: () => import('@/views/errors/404')

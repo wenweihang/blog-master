@@ -101,3 +101,21 @@ body {
 .ant-upload-list {
   display: none;
 }
+
+// 修改禁用的input背景
+.ant-input[disabled] {
+  color: rgba(0, 0, 0, .65) !important;
+  background-color: #fff !important;
+}
+
+.ant-form-item-children {
+  display: flex !important;
+}
+
+.ant-input-group {
+  width: auto !important;
+}
+
+.ant-input-group:last-child {
+  margin-left: 16px;
+}

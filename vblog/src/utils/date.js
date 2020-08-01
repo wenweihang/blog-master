@@ -66,3 +66,13 @@ export function convertDate(timestamp) {
     return `${monthPadZero}-${dayPadZero}`
   }
 }
+
+export function formatDateToDay(date) {
+  if (date == null) return ''
+  const dt = new Date(date)
+  const year = dt.getFullYear()
+  const month = padLeftZero((dt.getMonth() + 1).toString())
+  const day = padLeftZero(dt.getDate().toString())
+
+  return `${year}-${month}-${day}`
+}

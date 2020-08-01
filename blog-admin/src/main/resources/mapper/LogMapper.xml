@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.blog.dao.LogDao">
+
+    <select id="getLogs" resultType="com.zoe.blog.model.Log">
+        select * from b_log
+        <where>
+            <if test="level != null and level != ''">
+                level=#{level}
+            </if>
+            <if test="date != null and date != ''">
+                AND DATE_FORMAT(create_date,'%Y-%m-%d')=#{date}
+            </if>
+        </where>
+        order by create_date desc
+    </select>
+
+    <select id="getLevelGroup" resultType="string">
+        SELECT level from b_log GROUP BY level
+    </select>
+</mapper>

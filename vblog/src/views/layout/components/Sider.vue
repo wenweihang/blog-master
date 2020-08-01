@@ -45,6 +45,10 @@
           <span>角色管理</span>
         </a-menu-item>
       </a-sub-menu>
+      <a-menu-item key="log">
+        <a-icon type="database" />
+        <span>日志管理</span>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>

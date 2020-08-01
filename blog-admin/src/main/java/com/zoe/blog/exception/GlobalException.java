@@ -54,7 +54,7 @@ public class GlobalException {
     @ExceptionHandler(value = AccessDeniedException.class)
     public CommonResult accessDeniedException(AccessDeniedException e) {
         LogUtil.create();
-        LOGGER.error("没有权限异常: " + e.getMessage());
+        LOGGER.warn("没有权限异常: " + e.getMessage());
 
         return CommonResult.forbidden();
     }
