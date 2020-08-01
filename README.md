@@ -58,7 +58,7 @@
 
 **首页：**(https://zoe-oss.oss-cn-beijing.aliyuncs.com/blog/project/vblog-home.png)
 
-![首页](https://zoe-oss.oss-cn-beijing.aliyuncs.com/blog/project/vblog-home.png)
+<img src="https://zoe-oss.oss-cn-beijing.aliyuncs.com/blog/project/vblog-home.png"/>
 
 **文章管理：**(https://zoe-oss.oss-cn-beijing.aliyuncs.com/blog/project/vblog-article.png)
 
