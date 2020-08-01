@@ -1,6 +1,6 @@
 <template>
   <div id="category">
-    <div class="category-header">
+    <div class="header-container">
       <h1>分类管理</h1>
       <a-form-model ref="searchForm" layout="inline" :model="searchForm">
         <a-form-model-item prop="searchValue">
@@ -16,7 +16,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-    <div class="category-content">
+    <div class="content-container">
       <a-table
         :columns="columns"
         :row-key="record => record.id"
@@ -382,21 +382,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.category-header,
-.category-content {
-  background: #fff;
-  padding: 16px 24px;
-}
-
-.category-header {
-  margin-bottom: 16px;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-}
-
 .sort-input {
   border: 0;
   background: transparent;

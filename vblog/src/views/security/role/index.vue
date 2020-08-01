@@ -1,6 +1,6 @@
 <template>
   <div id="role">
-    <div class="role-header">
+    <div class="header-container">
       <h1>角色管理</h1>
       <a-form-model ref="searchForm" layout="inline" :model="searchForm">
         <a-form-model-item prop="searchValue">
@@ -16,7 +16,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-    <div class="role-content">
+    <div class="content-container">
       <a-table
         :columns="columns"
         :row-key="record => record.id"
@@ -295,21 +295,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.role-header,
-.role-content {
-  background: #fff;
-  padding: 16px 24px;
-}
-
-.role-header {
-  margin-bottom: 16px;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-}
-
 .description-count {
   color: rgba(0, 0, 0, 0.25);
 }

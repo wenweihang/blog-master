@@ -108,14 +108,17 @@ body {
   background-color: #fff !important;
 }
 
-.ant-form-item-children {
-  display: flex !important;
+.header-container,
+.content-container {
+  padding: 16px 24px;
+  background: #fff;
 }
 
-.ant-input-group {
-  width: auto !important;
-}
+.header-container {
+  margin-bottom: 16px;
 
-.ant-input-group:last-child {
-  margin-left: 16px;
+  h1 {
+    margin-bottom: 16px;
+    font-size: 24px;
+  }
 }

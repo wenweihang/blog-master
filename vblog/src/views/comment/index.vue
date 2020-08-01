@@ -1,9 +1,9 @@
 <template>
   <div id="comment">
-    <div class="comment-header">
+    <div class="header-container">
       <h1>评论管理</h1>
     </div>
-    <div class="comment-content">
+    <div class="content-container">
       <a-table
         :columns="columns"
         :loading="loading"
@@ -122,7 +122,7 @@ const columns = [
   {
     title: '发表时间',
     dataIndex: 'newCreateTime',
-    width: '160px'
+    width: '190px'
   },
   {
     title: '操作',
@@ -331,21 +331,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.comment-header,
-.comment-content {
-  background: #fff;
-  padding: 16px 24px;
-}
-
-.comment-header {
-  margin-bottom: 16px;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-}
-
 .description-count {
   color: rgba(0, 0, 0, 0.25);
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="user">
-    <div class="user-header">
+    <div class="header-container">
       <h1>用户管理</h1>
       <a-form-model ref="searchForm" layout="inline" :model="searchForm">
         <a-form-model-item prop="searchValue">
@@ -16,7 +16,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-    <div class="user-content">
+    <div class="content-container">
       <a-table
         :columns="columns"
         :row-key="record => record.id"
@@ -719,21 +719,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.user-header,
-.user-content {
-  background: #fff;
-  padding: 16px 24px;
-}
-
-.user-header {
-  margin-bottom: 16px;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-}
-
 .description-count {
   color: rgba(0, 0, 0, 0.25);
 }

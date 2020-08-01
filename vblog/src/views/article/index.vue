@@ -1,6 +1,6 @@
 <template>
   <div id="article">
-    <div class="article-header">
+    <div class="header-container">
       <h1>文章管理</h1>
       <a-form-model ref="searchForm" :model="searchForm">
         <a-form-model-item prop="searchValue">
@@ -13,7 +13,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-    <div class="article-content">
+    <div class="content-container">
       <a-table
         :columns="columns"
         :row-key="record => record.id"
@@ -353,21 +353,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.article-header,
-.article-content {
-  background: #fff;
-  padding: 16px 24px;
-}
-
-.article-header {
-  margin-bottom: 16px;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-}
-
 .sort-input {
   border: 0;
   background: transparent;

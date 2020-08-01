@@ -1,6 +1,6 @@
 <template>
   <div id="log">
-    <div class="log-header">
+    <div class="header-container">
       <h1>日志管理</h1>
       <a-form-model>
         <a-form-model-item>
@@ -19,7 +19,7 @@
         </a-form-model-item>
       </a-form-model>
     </div>
-    <div class="log-content">
+    <div class="content-container">
       <a-table
         :columns="columns"
         :row-key="record => record.id"
@@ -232,19 +232,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.log-header,
-.log-content {
-  background: #fff;
-  padding: 16px 24px;
+.ant-form-item-children {
+  display: flex !important;
 }
-
-.log-header {
-  margin-bottom: 16px;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
+.ant-input-group {
+  width: auto !important;
+}
+.ant-input-group:last-child {
+  margin-left: 16px;
 }
 .log-detail {
   margin-bottom: 24px;
