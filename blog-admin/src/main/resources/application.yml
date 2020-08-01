@@ -21,14 +21,13 @@ pagehelper:
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com  # oss对外服务的访问域名
-    accessKeyId: LTAI4G4GFr1fKxFCvvq52Yek # 访问身份验证中用到用户标识
-    accessKeySecret: PsMLMeU3zNx46YDz6MUsXwXZku6F2T # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    accessKeyId: accesskeyid # 访问身份验证中用到用户标识
+    accessKeySecret: accessKeysecret # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
     bucketName: zoe-oss # oss的存储空间
     policy:
       expire: 300 # 签名有效期(S)
     maxSize: 10 # 上传文件大小(M)
     callback: http://127.0.0.1:8080/blog/v1/oss/callback # 文件上传成功后的回调地址
-#    callback: http://39.106.173.170/blog/v1/oss/callback # 文件上传成功后的回调地址
     dir:
       prefix: blog/images/ # 上传文件夹路径前缀
 
