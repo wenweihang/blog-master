@@ -207,7 +207,6 @@
 import {
   getUsers,
   searchUsers,
-  getUserById,
   saveUser,
   updateUser,
   updateUserPassword,

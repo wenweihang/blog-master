@@ -74,7 +74,6 @@
 import {
   getRoles,
   searchRoles,
-  getRoleById,
   saveRole,
   updateRole,
   deleteRoleById

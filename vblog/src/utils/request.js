@@ -9,7 +9,6 @@ import {
 } from 'ant-design-vue'
 // 导入NProgress
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 
 // 创建axios实例
 const service = axios.create({

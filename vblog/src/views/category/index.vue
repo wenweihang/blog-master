@@ -87,7 +87,6 @@
 import {
   getCategories,
   searchCategory,
-  getCategoryById,
   saveCategory,
   updateCategory,
   deleteCategoryById

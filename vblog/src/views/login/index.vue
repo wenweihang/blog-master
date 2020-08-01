@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { setCookie, getCookie } from '@/utils/support'
+import { setCookie } from '@/utils/support'
 
 export default {
   name: 'Login',

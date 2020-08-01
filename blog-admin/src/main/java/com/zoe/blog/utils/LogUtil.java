@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zoe.blog.exception.RestApiException;
 import org.apache.log4j.MDC;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +38,6 @@ public class LogUtil {
     public static void create() {
         MDC.put("username", IPUtil.getUsername());
         MDC.put("ip", IPUtil.getIp());
+        MDC.put("nowTime", new Date().getTime());
     }
 }

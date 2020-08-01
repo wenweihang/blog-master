@@ -35,7 +35,6 @@ export function convertDate(timestamp) {
   const nowDay = now.getDate()
   const nowHour = now.getHours()
   const nowMinute = now.getMinutes()
-  const nowSecond = now.getSeconds()
 
   // 转化成几分钟前 几天前等格式
   const dt = new Date(timestamp)
@@ -65,14 +64,4 @@ export function convertDate(timestamp) {
   } else {
     return `${monthPadZero}-${dayPadZero}`
   }
-}
-
-export function formatDateToDay(date) {
-  if (date == null) return ''
-  const dt = new Date(date)
-  const year = dt.getFullYear()
-  const month = padLeftZero((dt.getMonth() + 1).toString())
-  const day = padLeftZero(dt.getDate().toString())
-
-  return `${year}-${month}-${day}`
 }

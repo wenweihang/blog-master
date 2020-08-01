@@ -12,6 +12,6 @@ import java.util.Date;
 public interface LoginUserDao {
     LoginUser findByUsername(String username);
 
-    void updateLastLoginTime(Integer id, Long lastLoginTime);
+    void updateLastLoginTime(String username, Long lastLoginTime);
 
 }

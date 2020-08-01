@@ -31,7 +31,7 @@
     </select>
 
     <update id="updateLastLoginTime">
-        update b_user set last_login_time=#{lastLoginTime} where id=#{id}
+        update b_user set last_login_time=#{lastLoginTime} where username=#{username}
     </update>
 
 </mapper>

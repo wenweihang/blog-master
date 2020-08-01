@@ -18,7 +18,7 @@ public class Log implements Serializable {
     private String username;
     private String ip;
     private String params;
-    private Date createDate;
+    private Long createDate;
     private String level;
     private String thread;
     private String location;

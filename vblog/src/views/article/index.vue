@@ -85,8 +85,6 @@
 <script>
 import {
   getArticles,
-  getArticleById,
-  saveArticle,
   updateArticle,
   deleteArticleById
 } from '@/api/article'

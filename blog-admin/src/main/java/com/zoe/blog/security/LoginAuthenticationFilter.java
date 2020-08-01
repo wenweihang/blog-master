@@ -60,7 +60,7 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
         // 获取用户信息
         LoginUser user = (LoginUser) authResult.getPrincipal();
         // 修改最后登录时间
-        userDao.updateLastLoginTime(user.getId(), new Date().getTime());
+        userDao.updateLastLoginTime(user.getUsername(), new Date().getTime());
         // 获取权限
         List<Role> roles = user.getRoles();
         List<String> newRoles = new ArrayList<>();

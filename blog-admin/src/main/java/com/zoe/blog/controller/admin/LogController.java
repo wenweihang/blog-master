@@ -8,10 +8,7 @@ import com.zoe.blog.utils.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,16 @@ public class LogController {
     public CommonResult<CommonPage<String>> getLevel() {
         List<String> levels= logService.getLevelGroup();
         return CommonResult.success(CommonPage.restPage(levels));
+    }
+
+    @ApiOperation("删除日志")
+    @DeleteMapping("/{id}")
+    public CommonResult delete(@PathVariable Integer id) {
+        int count = logService.delete(id);
+        if (count > 0) {
+            return CommonResult.success(count);
+        }
+        return CommonResult.failed();
     }
 
 }

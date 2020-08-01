@@ -7,11 +7,11 @@ Vue.use(VueRouter)
 
 const routes = [{
   path: '/login',
-  component: () => import('@/views/login/index')
+  component: () => import(/* webpackChunkName: 'group-login' */ '@/views/login/index')
 }, {
   path: '/write',
   name: 'Write',
-  component: () => import('@/views/write/index')
+  component: () => import(/* webpackChunkName: 'group-write' */ '@/views/write/index')
 }, {
   path: '/',
   component: Layout,
@@ -19,35 +19,35 @@ const routes = [{
   children: [{
     path: 'home',
     name: 'Home',
-    component: () => import('@/views/home/index')
+    component: () => import(/* webpackChunkName: 'group-home' */ '@/views/home/index')
   }, {
     path: 'article',
     name: 'Article',
-    component: () => import('@/views/article/index')
+    component: () => import(/* webpackChunkName: 'group-article' */ '@/views/article/index')
   }, {
     path: 'category',
     name: 'Category',
-    component: () => import('@/views/category/index')
+    component: () => import(/* webpackChunkName: 'group-category' */ '@/views/category/index')
   }, {
     path: 'comment',
     name: 'Comment',
-    component: () => import('@/views/comment/index')
+    component: () => import(/* webpackChunkName: 'group-comment' */ '@/views/comment/index')
   }, {
     path: 'user',
     name: 'User',
-    component: () => import('@/views/security/user/index')
+    component: () => import(/* webpackChunkName: 'group-security' */ '@/views/security/user/index')
   }, {
     path: 'role',
     name: 'Role',
-    component: () => import('@/views/security/role/index')
+    component: () => import(/* webpackChunkName: 'group-security' */ '@/views/security/role/index')
   }, {
     path: 'setting',
     name: 'Setting',
-    component: () => import('@/views/setting/index')
+    component: () => import(/* webpackChunkName: 'group-setting' */ '@/views/setting/index')
   }, {
     path: 'log',
     name: 'Log',
-    component: () => import('@/views/log/index')
+    component: () => import(/* webpackChunkName: 'group-log' */ '@/views/log/index')
   }, {
     path: '404',
     name: '404',

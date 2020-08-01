@@ -17,6 +17,7 @@ public class LogService {
     @Autowired
     LogDao logDao;
 
+
     public List<Log> list(LogQueryParam queryParam) {
         PageHelper.startPage(queryParam.getPageNum(), queryParam.getPageSize());
         return logDao.getLogs(queryParam);
@@ -25,4 +26,9 @@ public class LogService {
     public List<String> getLevelGroup() {
         return logDao.getLevelGroup();
     }
+
+    public int delete(Integer id) {
+        return logDao.delete(id);
+    }
+
 }

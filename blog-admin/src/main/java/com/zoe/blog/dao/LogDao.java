@@ -14,4 +14,6 @@ public interface LogDao {
     List<Log> getLogs(LogQueryParam queryParam);
 
     List<String> getLevelGroup();
+
+    int delete(Integer id);
 }

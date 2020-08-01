@@ -91,8 +91,7 @@
 
 <script>
 import { getLogs, getLevels } from '@/api/log'
-import { formatDate, formatDateToDay } from '@/utils/date'
-import { message } from 'ant-design-vue'
+import { formatDate } from '@/utils/date'
 
 const columns = [
   {

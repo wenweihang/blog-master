@@ -11,7 +11,7 @@
                 level=#{level}
             </if>
             <if test="date != null and date != ''">
-                AND DATE_FORMAT(create_date,'%Y-%m-%d')=#{date}
+                AND DATE_FORMAT(FROM_UNIXTIME(create_date/1000),'%Y-%m-%d')=#{date}
             </if>
         </where>
         order by create_date desc
@@ -20,4 +20,8 @@
     <select id="getLevelGroup" resultType="string">
         SELECT level from b_log GROUP BY level
     </select>
+
+    <delete id="delete">
+        delete from b_log where id=#{id}
+    </delete>
 </mapper>
