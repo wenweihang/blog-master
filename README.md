@@ -45,6 +45,11 @@
 - JDK 1.8
 - MySQL 8
 
+#### 文件夹说明
+- blog-admin：后端
+- blog-web：前台显示页面
+- vblog：后台显示页面
+
 
 
 ### 项目效果图
