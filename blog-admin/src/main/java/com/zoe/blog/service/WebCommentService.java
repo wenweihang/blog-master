@@ -27,6 +27,10 @@ public class WebCommentService {
         return webCommentDao.getCommentsLimitEight();
     }
 
+    public int getCommentCount() {
+        return webCommentDao.getCommentCount();
+    }
+
     public int insert(Comment comment) {
         // 记录日评论数
         uvDao.addOneComments();

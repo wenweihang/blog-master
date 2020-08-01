@@ -19,6 +19,8 @@ public interface WebCommentDao {
      */
     List<Comment> getCommentsLimitEight();
 
+    int getCommentCount();
+
     int insert(Comment comment);
 
 }

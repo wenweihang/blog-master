@@ -29,6 +29,10 @@
         SELECT * from b_comment ORDER BY create_time DESC LIMIT 10
     </select>
 
+    <select id="getCommentCount" resultType="int">
+        select count(1) FROM b_comment
+    </select>
+
     <insert id="insert" parameterType="com.zoe.blog.model.Comment" useGeneratedKeys="true" keyProperty="id">
         insert into b_comment (content, create_time, enabled, article_id, visitor_nickname, visitor_email)
         values

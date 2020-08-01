@@ -34,6 +34,13 @@ public class WebCommentController {
         return CommonResult.success(CommonPage.restPage(comments));
     }
 
+    @ApiOperation("查询总评论数")
+    @GetMapping("/count")
+    public CommonResult getCommentCount() {
+        int count = webCommentService.getCommentCount();
+        return CommonResult.success(count);
+    }
+
     @ApiOperation("获取最新的前8条评论")
     @GetMapping("/eight")
     public CommonResult<CommonPage<Comment>> getCommentsLimitEight() {
