@@ -21,3 +21,10 @@ export function updateEnabled(id, enabled) {
     }
   })
 }
+
+export function deleteCommentById(id) {
+  return request({
+    url: `/comment/${id}`,
+    method: 'delete'
+  })
+}

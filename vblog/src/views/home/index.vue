@@ -35,9 +35,9 @@
         </a-skeleton>
       </div>
       <div class="number-block-item">
-        <a-skeleton active :loading="amountLoading">
+        <a-skeleton active :loading="commentLoading">
           <p class="number-info-box">
-            <span class="num">{{ amountComments }}</span>
+            <span class="num">{{ commentCount }}</span>
             <span class="title">总评论数</span>
           </p>
         </a-skeleton>
@@ -66,7 +66,7 @@
 import { getCookie } from '@/utils/support'
 import { message } from 'ant-design-vue'
 import { getUsers } from '@/api/user'
-import { getAticleCount } from '@/api/data'
+import { getAticleCount, getCommentCount } from '@/api/data'
 import { getCurrentDay, getUvAmount } from '@/api/uv'
 import AreaGraph from './components/AreaGraph'
 import RadarGraph from './components/RadarGraph'
@@ -86,7 +86,8 @@ export default {
       currentLoading: false,
       amountLoading: false,
       amountUv: 0,
-      amountComments: 0,
+      commentCount: 0,
+      commentLoading: false,
       articleLoading: false,
       articleCount: 0
     }
@@ -118,9 +119,11 @@ export default {
     this.currentLoading = true
     this.amountLoading = true
     this.articleLoading = true
+    this.commentLoading = true
     this.getCurrentDayDate()
     this.getUvAmountDate()
     this.getAticleCountData()
+    this.getCommentCountData()
   },
   methods: {
     getCurrentDayDate() {
@@ -138,7 +141,6 @@ export default {
         if (response && response.data) {
           const data = response.data
           this.amountUv = data.uv
-          this.amountComments = data.comments
           this.amountLoading = false
         }
       })
@@ -148,6 +150,14 @@ export default {
         if (response && response.data) {
           this.articleCount = response.data
           this.articleLoading = false
+        }
+      })
+    },
+    getCommentCountData() {
+      getCommentCount().then(response => {
+        if (response) {
+          this.commentCount = response.data
+          this.commentLoading = false
         }
       })
     }

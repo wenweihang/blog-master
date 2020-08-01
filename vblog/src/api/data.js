@@ -14,6 +14,13 @@ export function getCategoryCount() {
   })
 }
 
+export function getCommentCount(pageNum, pageSize) {
+  return request({
+    url: '/web/comment/count',
+    method: 'get'
+  })
+}
+
 export function getCommentsLimitEight() {
   return request({
     url: '/web/comment/eight',

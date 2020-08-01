@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { getComments, updateEnabled } from '@/api/comment'
+import { getComments, updateEnabled, deleteCommentById } from '@/api/comment'
 import { saveReply, updateReply, deleteReplyById } from '@/api/reply'
 import { formatDate } from '@/utils/date'
 import { message, Modal } from 'ant-design-vue'
@@ -133,7 +133,7 @@ const columns = [
 
 export default {
   name: 'Comment',
-  created() {
+  mounted() {
     this.getCommentDate()
   },
   data() {
@@ -185,7 +185,6 @@ export default {
         response => {
           const data = response.data
           const comments = data.list
-          const reply = []
           comments.forEach(comment => {
             const newCreateTime = formatDate(comment.createTime)
             comment.newCreateTime = newCreateTime
@@ -294,15 +293,15 @@ export default {
     onDelete(record) {
       const that = this
       Modal.confirm({
-        title: '删除分类',
-        content: `你要删除【${record.name}】分类吗?`,
+        title: '删除评论',
+        content: `你要删除【${record.visitorNickname}】发表的评论吗?`,
         okText: '确定',
         cancelText: '取消',
         onOk() {
-          deleteCategoryById(record.id).then(response => {
+          deleteCommentById(record.id).then(response => {
             if (response && response.data) {
               message.success('删除成功')
-              that.getCategoryDate()
+              that.getCommentDate()
             }
           })
         }
