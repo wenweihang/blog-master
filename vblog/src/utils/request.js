@@ -7,15 +7,19 @@ import {
 import {
   message
 } from 'ant-design-vue'
+// 导入NProgress
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:8080/blog/v1/',
+  baseURL: 'http://127.0.0.1:8081/blog/v1/',
   timeout: 15000
 })
 
 // request 拦截器
 service.interceptors.request.use(config => {
+  NProgress.start() // 进度条显示
   if (store.getters.token) {
     config.headers.Authorization = getToken()
   }
@@ -26,6 +30,7 @@ service.interceptors.request.use(config => {
 
 // response 拦截器
 service.interceptors.response.use(response => {
+  NProgress.done() // 隐藏进度条
   // code 为非200是抛错
   const res = response.data
   if (res.code !== 200) {
